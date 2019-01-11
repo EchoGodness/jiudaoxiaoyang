@@ -1,0 +1,16 @@
+<view class='container'>
+      <view class='header'>
+            <v-episode class="episode" index="{{classicData.index}}" />
+            <view class="star-container">
+                  <v-star class="star" bind:like="getLike" like="{{like_status}}" count="{{fav_nums}}" />
+                  <v-button open-type="share" class='share-btn'>
+                        <image src="/images/icon/share.png" slot="img" class="share"></image>
+                  </v-button>
+            </view>
+      </view>
+      <!-- type: 期刊类型,这里的类型分为:100 电影 200 音乐 300 句子 -->
+      <v-movie hidden="{{classicData.type!=100}}" img="{{classicData.image}}" content="{{classicData.content}}" />
+      <v-music wx:if="{{classicData.type==200}}" img="{{classicData.image}}" content="{{classicData.content}}" musicSrc="{{classicData.url}}" />
+      <v-essay hidden="{{classicData.type!=300}}" img="{{classicData.image}}" content="{{classicData.content}}" />
+      <v-navi bind:left='getNext' bind:right='getPrevious' class="navi" title="{{classicData.title}}" latest="{{latest}}" first="{{first}}" />
+</view>

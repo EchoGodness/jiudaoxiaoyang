@@ -1,0 +1,14 @@
+<view class="outer">
+      <block wx:for="{{book}}" wx:key="index">
+            <view class="container" bindtap="onTab" data-bid='{{item.id}}'>
+                  <image src="{{item.image}}" />
+                  <view class="des">
+                        <text class="title">{{item.title}}</text>
+                        <text class="author">{{item.author}}</text>
+                        <view class="foot" wx:if="{{item.fav_nums}}">
+                              <text class="footer">{{item.fav_nums}} 喜欢</text>
+                        </view>
+                  </view>
+            </view>
+      </block>
+</view>

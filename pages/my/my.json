@@ -1,0 +1,6 @@
+{
+      "usingComponents": {
+            "v-preview": "../../components/preview/index",
+            "v-button": "../../components/authorizeButton/index"
+      }
+}

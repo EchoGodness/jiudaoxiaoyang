@@ -1,0 +1,13 @@
+<view class="container" wx:if="{{!searchOrNo}}">
+      <view class="header" bindtap="onSearch">
+            <view class="box">
+                  <image src="/images/icon/search.png"></image>
+                  <text>搜索书籍</text>
+            </view>
+      </view>
+      <view class="sub-container">
+            <image src="/images/book/quality.png" class="head-img"></image>
+            <v-book book="{{bookData}}" needFooter="{{needFooter}}"/>
+      </view>
+</view>
+<v-search bind:cancel="getCancel" more="{{more}}" wx:else/>

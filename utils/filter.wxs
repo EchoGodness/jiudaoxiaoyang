@@ -1,0 +1,11 @@
+var format = function(text) {
+      // 如若text不存在直接终止，否则报错
+      if (text) {
+            var reg = getRegExp('\\\\n', 'g')
+            return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+      }
+
+}
+module.exports = {
+      format: format
+}

@@ -1,0 +1,71 @@
+<wxs src="../../utils/filter.wxs" module="filter" />
+<wxs module="limit">
+      var hightlight = function(val, number) {
+            return val.slice(0, number)
+      }
+      module.export = {
+            hightlight: hightlight
+      }
+</wxs>
+<view class="container">
+      <view class="header">
+            <image src="{{details.image}}" />
+            <text class="title">{{details.title}}</text>
+            <text class="author">{{details.author[0]}}</text>
+      </view>
+      <view class="sub-container">
+            <text class="headline">短评</text>
+            <text class="shadow" wx:if="{{comments.length==0}}">还没有短评</text>
+            <view class="comment-container">
+                  <block wx:for="{{comments}}" wx:key="{{index}}" wx:if="{{index<10}}">
+                        <v-tag content="{{item.content}}" tag-class="{{index==0? 'ex-tag':''||index==1? 'se-tag':''}}">
+                              <text slot="after" class="num">+{{item.nums}}</text>
+                        </v-tag>
+                  </block>
+            </view>
+      </view>
+      <view class="sub-container">
+            <text class="headline">内容简介</text>
+            <text decode="{{true}}" class="content">{{filter.format(details.summary)}}</text>
+      </view>
+      <view class="sub-container publish">
+            <text class="headline">书本信息</text>
+            <view class="inner">
+                  <text>出版社 {{details.publisher}}</text>
+                  <text>出版年 {{details.pubdate}}</text>
+                  <text>页数 {{details.pages}}</text>
+                  <text>定价 {{details.price}}</text>
+                  <text>装帧 {{details.binding}}</text>
+            </view>
+      </view>
+      <view class="mask-fask" wx:if="{{!showMask}}">
+            <view class="search-container" bindtap="showInput">
+                  <text>短评，仅作演示，不能输入</text>
+            </view>
+            <view class="star-container">
+                  <v-star class="star" bind:like="getLike" like="{{like_status}}" count="{{fav_nums}}" />
+                  <v-button open-type="share" class='share-btn'>
+                        <image src="/images/icon/share.png" slot="img" class="share"></image>
+                  </v-button>
+            </view>
+
+
+      </view>
+</view>
+<v-mask wx:if="{{showMask}}"></v-mask>
+<view class="mask-really" wx:if="{{showMask}}">
+      <view class="comment-head">
+            <text wx:if="{{comments.length!=0}}">仅可点击标签+1</text>
+            <text class="shadow" wx:else>暂无标签</text>
+            <text bindtap="onCancel">取消</text>
+      </view>
+      <view class="comment-box">
+            <block wx:for="{{comments}}" wx:key="{{index}}" wx:if="{{index<3}}">
+                  <v-tag content="{{item.content}}" tag-class="{{index==0? 'ex-tag':''||index==1? 'se-tag':''}}" bind:tapping='onPost'>
+                        <text slot="after" class="num">+{{item.nums}}</text>
+                  </v-tag>
+            </block>
+      </view>
+      <image src="/images/book/tip.png"></image>
+      <!-- <input bindconfirm='onPost' class='post' placeholder='短评最多输入12个字'></input> -->
+</view>

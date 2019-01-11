@@ -1,0 +1,8 @@
+<view class="container" data-bid='{{classic.id}}' data-btype='{{classic.type}}' bindtap="onTab">
+      <view class="head">
+            <v-tag content="{{typeText}}" tag-class="tag" />
+            <v-star class="like" readOnly="{{true}}" like="{{classic.like_status}}" count="{{classic.fav_nums}}" />
+      </view>
+      <image class="{{classic.type==200?'music-img':'other-img'}}" src="{{classic.image}}"></image>
+      <view class="text">{{classic.content}}</view>
+</view>
